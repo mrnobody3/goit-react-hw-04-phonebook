@@ -5,7 +5,9 @@ import s from './filter.module.css';
 const Filter = ({ handleChange, filter }) => {
   return (
     <div>
-      <label htmlFor="">Find contacts by name: </label>
+      <label className={s.name} htmlFor="">
+        Find contacts by name:{' '}
+      </label>
       <input
         type="text"
         value={filter}
