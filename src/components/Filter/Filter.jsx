@@ -1,3 +1,4 @@
+import { memo } from 'react';
 import PropTypes from 'prop-types';
 
 import s from './filter.module.css';
@@ -21,7 +22,7 @@ const Filter = ({ handleChange, filter }) => {
   );
 };
 
-export default Filter;
+export default memo(Filter);
 
 Filter.propTypes = {
   handleChange: PropTypes.func.isRequired,

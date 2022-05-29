@@ -2,13 +2,13 @@ import PropTypes from 'prop-types';
 
 import s from './contactList.module.css';
 
-const ContactList = ({ contacts, deleteBook }) => {
+const ContactList = ({ contacts, deleteContact }) => {
   const elements = contacts.map(({ name, number, id }) => (
     <li key={id} className={s.item}>
       <p className={s.info}>
         {name}: {number}
       </p>
-      <button className={s.btn} type="button" onClick={() => deleteBook(id)}>
+      <button className={s.btn} type="button" onClick={() => deleteContact(id)}>
         X
       </button>
     </li>
@@ -30,5 +30,5 @@ ContactList.propTypes = {
       id: PropTypes.string.isRequired,
     })
   ),
-  deleteBook: PropTypes.func.isRequired,
+  deleteContact: PropTypes.func.isRequired,
 };
