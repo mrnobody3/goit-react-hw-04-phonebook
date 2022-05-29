@@ -42,11 +42,15 @@ const App = () => {
     [setFilter]
   );
 
-  const deleteContact = id => {
-    const filtered = contacts.filter(contact => contact.id !== id);
-    setContacts(filtered);
-  };
-  const getFilteredContacts = () => {
+  const deleteContact = useCallback(
+    id => {
+      const filtered = contacts.filter(contact => contact.id !== id);
+      setContacts(filtered);
+    },
+    [contacts]
+  );
+
+  const getFilteredContacts = useCallback(() => {
     if (!filter) {
       return contacts;
     }
@@ -56,24 +60,28 @@ const App = () => {
       return result;
     });
     return filteredContacts;
-  };
-  const addContactBySubmit = props => {
-    const duplicate = contacts.find(contact => contact.name === props.name);
-    if (duplicate) {
-      alert(`${props.name} is already in books list`);
-      return;
-    }
+  }, [contacts, filter]);
 
-    setContacts(prevState => {
-      const { name, number } = props;
-      const newContact = {
-        id: nanoid(),
-        name,
-        number,
-      };
-      return [...prevState, newContact];
-    });
-  };
+  const addContactBySubmit = useCallback(
+    props => {
+      const duplicate = contacts.find(contact => contact.name === props.name);
+      if (duplicate) {
+        alert(`${props.name} is already in books list`);
+        return;
+      }
+
+      setContacts(prevState => {
+        const { name, number } = props;
+        const newContact = {
+          id: nanoid(),
+          name,
+          number,
+        };
+        return [...prevState, newContact];
+      });
+    },
+    [contacts]
+  );
 
   return (
     <div className={s.container}>
