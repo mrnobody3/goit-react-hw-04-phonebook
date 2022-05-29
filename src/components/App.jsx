@@ -6,6 +6,7 @@ import Filter from './Filter';
 import ContactList from './ContactList';
 
 import s from './app.module.css';
+
 const App = () => {
   const [contacts, setContacts] = useState([
     { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -20,7 +21,6 @@ const App = () => {
   useEffect(() => {
     if (!firstTime.content) {
       const items = JSON.stringify(contacts);
-      console.log('update');
       localStorage.setItem('contacts', items);
     }
   }, [contacts]);
